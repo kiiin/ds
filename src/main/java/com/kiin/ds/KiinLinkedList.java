@@ -91,7 +91,9 @@ public class KiinLinkedList {
 	public int addItem(Object inItem,int inIndex)
 	{		
 		int itemsAdded = 0;
-		KiinLLItem tmpItem, tmpItemAddFrom,tmpItemAddBackHook = null;
+		KiinLLItem tmpItemAddBackHook = null;
+		KiinLLItem tmpItem = null;
+		KiinLLItem tmpItemAddFrom = null;
 		KiinLLItem currentItem = head;
 		
 	      if (inItem != null)
