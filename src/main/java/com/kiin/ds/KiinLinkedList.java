@@ -1,8 +1,16 @@
 package com.kiin.ds;
 import com.kiin.ds.exceptions.KiinLLException;
-
+/**
+ * 
+ * @author kuttik
+ * This is a sample linked list
+ *
+ */
 public class KiinLinkedList {
 	
+	/***
+	 * Unlike conventional linked list, the head is the first element in this case. Very much a bad design
+	 */
 	private   KiinLLItem head=null;   	
     /**
 	 * @return the lenCount
@@ -13,27 +21,35 @@ public class KiinLinkedList {
 
 
 	/**
-	 * @param lenCount the lenCount to set
+	 * Increment the counter or length field
 	 */
-	public void incrementLenCount(int lenCount) {
-		this.lenCount = lenCount;
+	public void incrementLenCount() {
+		this.lenCount = this.lenCount+1;
+	}
+	
+	
+	/***
+	 * Decrement the counter variable 
+	 */
+	public void decrementLenCount() {
+		this.lenCount = this.lenCount+1;
 	}
 
+	/***
+	 * The length variable of linked list
+	 */
 	private int lenCount = 0;
 	public KiinLinkedList() {
 		
 		}
 
 
-	public int addItem(Object inItem) throws KiinLLException
+	public int addItem(Object inItem) 
 	{
 		KiinLLItem currentItem,tmpItem = null;
 		int itemsAdded = 0;
-		try{			
-			if (inItem == null )
-				throw new KiinLLException();
-			else
-			{				
+					
+							
 				if (head == null )
 					{
 					head = new KiinLLItem(inItem);
@@ -43,30 +59,23 @@ public class KiinLinkedList {
 					tmpItem = new KiinLLItem(inItem);
 				
 				currentItem = head;
-				//KiinLLItem tmpItem = new KiinLLItem(inItem);
-				//System.out.println("outside loop currentItem --> "+currentItem.getItemVal());
+				
 				while (currentItem.getNextItem() != null)
 				{
 					currentItem = currentItem.getNextItem();
-					//System.out.println("currentItem --> "+currentItem.getItemVal());
+					
 				}				
-				currentItem.setNextItem(tmpItem);
-				//System.out.println("After loop currentItem --> "+currentItem.getNextItem());
-				
+				currentItem.setNextItem(tmpItem);				
 				lenCount=lenCount+1;
 				itemsAdded=1;				
-			}		
-		}catch (KiinLLException exc)
-		{
-			exc.getMessage();
-		}		
+					
+				
 		return itemsAdded;
 	}
 	
 	public String toString()
 	{
 		String strOut="";
-		//KiinLLItem currentItem = head;
 		
 		if (head != null) {
 			KiinLLItem currentItem = head.getNextItem();
@@ -79,7 +88,7 @@ public class KiinLinkedList {
 		
 		return strOut;
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		KiinLinkedList kiinLinkedList = new KiinLinkedList();
 		KiinLLItem tmpItem = null;
@@ -97,14 +106,14 @@ public class KiinLinkedList {
 			//kiinLinkedList.removeItem(4);
 			kiinLinkedList.addItem("Kooi",4);
 			System.out.println("The count at the moment "+kiinLinkedList.lenCount);
-/*			for (int i=0; i<=kiinLinkedList.lenCount ; i++)
+			for (int i=0; i<=kiinLinkedList.lenCount ; i++)
 			{
 				if ( kiinLinkedList.getItem(i) != null )
 					{
 					tmpItem = kiinLinkedList.getItem(i);
 					System.out.println("Iterating through list at "+i+" value is "+tmpItem.getItemVal());
 					}
-			}*/
+			}
 			
 			System.out.println(kiinLinkedList.toString());
 			
@@ -112,17 +121,15 @@ public class KiinLinkedList {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+	}	*/
 	
-	public int addItem(Object inItem,int inIndex) throws KiinLLException
+	public int addItem(Object inItem,int inIndex)
 	{		
 		int itemsAdded = 0;
 		KiinLLItem tmpItem, tmpItemAddFrom,tmpItemAddBackHook = null;
 		KiinLLItem currentItem = head;
 		
-		if (inIndex < 0 || inIndex > lenCount)
-			throw new KiinLLException();
-		if (inItem != null)
+	      if (inItem != null)
 			
 			{
 			tmpItemAddFrom = new KiinLLItem(inItem);
@@ -139,11 +146,11 @@ public class KiinLinkedList {
 				tmpItemAddBackHook=currentItem.getNextItem();
 				tmpItemAddFrom = currentItem;
 				currentItem=currentItem.getNextItem();
-				//System.out.println("additem Index Value at "+i+" is "+currentItem.getItemVal());
+				
 				}
-			//System.out.println("avitt additem Index Value at "+i+" is "+currentItem.getItemVal());
+			
 		}
-		//System.out.println("Value at inIndex is "+currentItem.getItemVal());
+		
 		tmpItemAddFrom.setNextItem(tmpItem);
 		tmpItem.setNextItem(tmpItemAddBackHook);
 		
@@ -153,14 +160,12 @@ public class KiinLinkedList {
 	}
 	
 	
-	public int removeItem(int inIndex) throws KiinLLException
+	public int removeItem(int inIndex) 
 	{
 		int itemsRemoved = 0;
-		//int listLen = RealKiinLinkedList.length;
+		
 		KiinLLItem currentItem = head;
-		KiinLLItem tmpItem,tmpItem1 = null;
-		if (inIndex < 0)
-			throw new KiinLLException();
+		KiinLLItem tmpItem,tmpItem1 = null;	
 		
 			
 		for (int i=0; i<inIndex; i++)
@@ -174,18 +179,17 @@ public class KiinLinkedList {
 		currentItem.setNextItem(tmpItem);
 		itemsRemoved=1;
 		lenCount=lenCount-1;
-		//System.out.println("About to be removed "+ currentItem.getItemVal()+" And the next to next "+tmpItem.getItemVal());
+		
 		
 		return itemsRemoved;
 	}
 	
-	public Object getItem(int inIndex) throws KiinLLException
+	public Object getItem(int inIndex) 
 	{
-		//int listLen = RealKiinLinkedList.length;
+	
 		KiinLLItem currentItem = head;
 		Object tmpItem = null;
-		if (inIndex < 0)
-			throw new KiinLLException();
+	
 		for (int i=0; i<inIndex; i++)
 		{
 			if ( currentItem.getNextItem() != null )
@@ -193,14 +197,18 @@ public class KiinLinkedList {
 					
 		}
 		tmpItem = currentItem.getItemVal();	
-		//System.out.println("About to be get "+ currentItem.getItemVal()+" And the next to next "+tmpItem.getItemVal());
+		
 		
 		return tmpItem;
 	}
 	
 }
 
-
+/***
+ * 
+ * @author kuttik
+ * Internal class represents an item in the linked list
+ */
 class KiinLLItem 
 {
 	Object itemVal = null;	
