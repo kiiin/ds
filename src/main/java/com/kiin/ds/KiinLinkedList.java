@@ -1,5 +1,4 @@
 package com.kiin.ds;
-import com.kiin.ds.exceptions.KiinLLException;
 /**
  * 
  * @author kuttik
@@ -88,40 +87,6 @@ public class KiinLinkedList {
 		
 		return strOut;
 	}
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		KiinLinkedList kiinLinkedList = new KiinLinkedList();
-		KiinLLItem tmpItem = null;
-		
-		try {
-			System.out.println("The count in the begenning "+kiinLinkedList.lenCount);
-			kiinLinkedList.addItem("0 item");
-			kiinLinkedList.addItem("1 item");
-			kiinLinkedList.addItem("2 Item");
-			kiinLinkedList.addItem("3 Item");
-			kiinLinkedList.addItem("4 Item");
-			kiinLinkedList.addItem("5 Item");			
-			//kiinLinkedList.addItem("Kooi",3);
-			
-			//kiinLinkedList.removeItem(4);
-			kiinLinkedList.addItem("Kooi",4);
-			System.out.println("The count at the moment "+kiinLinkedList.lenCount);
-			for (int i=0; i<=kiinLinkedList.lenCount ; i++)
-			{
-				if ( kiinLinkedList.getItem(i) != null )
-					{
-					tmpItem = kiinLinkedList.getItem(i);
-					System.out.println("Iterating through list at "+i+" value is "+tmpItem.getItemVal());
-					}
-			}
-			
-			System.out.println(kiinLinkedList.toString());
-			
-		} catch (KiinLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}	*/
 	
 	public int addItem(Object inItem,int inIndex)
 	{		
@@ -135,10 +100,8 @@ public class KiinLinkedList {
 			tmpItemAddFrom = new KiinLLItem(inItem);
 			tmpItem = new KiinLLItem(inItem);
 			}
-			
-		else
-			throw new KiinLLException();
-		for (int i=0; i<inIndex ; i++)
+
+	      for (int i=0; i<inIndex ; i++)
 		{
 			if ( currentItem.getNextItem() != null )
 				{
